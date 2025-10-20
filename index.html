@@ -3,293 +3,174 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Punkt Online — e‑booki i merch</title>
-  <meta name="description" content="Sklep z e‑bookami i merchem. Natychmiastowa dostawa PDF, płatności przez BuyCoffee. Limitowane dropy, złoto + ciemny premium." />
-  <meta name="robots" content="index,follow" />
+  <title>Punkt Online — prawdziwe historie o zdrowiu i życiu</title>
+  <meta name="description" content="E-booki, które dotykają prawdy. Punkt Online — prawdziwe historie o zdrowiu i życiu. Kup teraz przez BuyCoffee lub PayHip.">
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/3b/Gold_star.svg">
 
-  <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="Punkt Online — e‑booki i merch" />
-  <meta property="og:description" content="Profesjonalne e‑booki i merch. Dostawa natychmiast po zakupie. 🇵🇱🇩🇪" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600&auto=format&fit=crop" />
-  <meta name="twitter:card" content="summary_large_image" />
-
-  <!-- Favicon (inline data URL) -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23F5C542'/%3E%3Cstop offset='100%25' stop-color='%23B8860B'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='128' height='128' rx='28' fill='url(%23g)'/%3E%3Ctext x='50%25' y='58%25' text-anchor='middle' font-family='Inter, Arial' font-size='56'%3EP%3C/text%3E%3C/svg%3E" />
-
-  <!-- Tailwind CSS via CDN (no build needed) -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          colors: { brand: '#F5C542', dark: '#0b0b0f' }
+          colors: {
+            dark: '#0b0b0f',
+            gold: '#f5c542'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif']
+          }
         }
       }
     }
   </script>
 
   <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
-    html, body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
-    /* Smooth scroll for anchor links */
-    html { scroll-behavior: smooth; }
-    /* Details element styling */
-    details summary::-webkit-details-marker { display:none; }
+    html, body {
+      scroll-behavior: smooth;
+      font-family: 'Inter', sans-serif;
+      background-color: #0b0b0f;
+      color: #fff;
+    }
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+    }
+    [data-animate].visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
-<body class="min-h-screen bg-dark text-white">
 
-  <!-- NAV -->
-  <header class="sticky top-0 z-50 backdrop-blur bg-dark/70">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-3">
-        <img src="assets/Logo PUNKT ONLINE na czarnym tle szerokie….png" alt="Punkt Online" style="height:60px; width:auto; border-radius:8px; margin-top:-5px;" />
+<body class="min-h-screen flex flex-col">
 
-
-        <span class="font-semibold tracking-wide text-brand">Punkt Online</span>
-      </a>
-      <nav class="hidden md:flex items-center gap-8 text-sm">
-        <a href="#sklep" class="opacity-80 hover:opacity-100">Sklep</a>
-        <a href="#dlaczego" class="opacity-80 hover:opacity-100">Dlaczego my</a>
-        <a href="#faq" class="opacity-80 hover:opacity-100">FAQ</a>
-        <a href="#kontakt" class="opacity-80 hover:opacity-100">Kontakt</a>
-        <a href="https://buycoffee.to/punktonline" class="rounded-xl px-4 py-2 bg-brand text-black font-medium hover:brightness-95">Kup teraz</a>
-      </nav>
-      <button id="menuBtn" class="md:hidden rounded-xl px-3 py-2 bg-white/10 border border-white/10 text-sm">Menu</button>
-    </div>
-    <div id="mobileMenu" class="md:hidden hidden border-t border-white/10 bg-black/40">
-      <div class="px-4 py-3 flex flex-col gap-3 text-sm">
-        <a href="#sklep" class="opacity-90">Sklep</a>
-        <a href="#dlaczego" class="opacity-90">Dlaczego my</a>
-        <a href="#faq" class="opacity-90">FAQ</a>
-        <a href="#kontakt" class="opacity-90">Kontakt</a>
-        <a href="https://buycoffee.to/punktonline" class="rounded-xl px-4 py-2 bg-brand text-black font-medium w-max">Kup teraz</a>
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 bg-dark/90 backdrop-blur border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <img src="assets/Logo PUNKT ONLINE na czarnym tle szerokie….png" alt="Punkt Online" class="h-10 rounded-md">
+        <span class="font-semibold text-gold text-lg tracking-wide">Punkt Online</span>
       </div>
+      <nav class="hidden sm:flex gap-6 text-sm">
+        <a href="#sklep" class="hover:text-gold transition">Sklep</a>
+        <a href="#faq" class="hover:text-gold transition">FAQ</a>
+        <a href="#kontakt" class="hover:text-gold transition">Kontakt</a>
+      </nav>
     </div>
   </header>
 
   <!-- HERO -->
-  <section class="relative overflow-hidden">
-    <div class="absolute inset-0 opacity-20"
-      style="background-image:
-        radial-gradient(60rem 60rem at 80% -10%, rgba(245,197,66,0.15), transparent),
-        radial-gradient(40rem 40rem at -10% 50%, rgba(255,255,255,0.05), transparent);">
+  <section class="text-center py-20 px-4 bg-gradient-to-b from-black/60 to-transparent">
+    <h1 class="text-4xl sm:text-6xl font-serif text-gold mb-4">Punkt Online</h1>
+    <p class="text-xl opacity-90 max-w-2xl mx-auto font-light">Prawdziwe historie o zdrowiu i życiu — opowieści, które poruszają i inspirują.  
+      Każdy e-book to osobista podróż, którą możesz rozpocząć już teraz.</p>
+    <div class="mt-8">
+      <a href="#sklep" class="bg-gold text-black px-6 py-3 rounded-lg font-semibold hover:brightness-90">Zobacz e-booki</a>
     </div>
-    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-16 pb-20 lg:pt-24 lg:pb-28 grid lg:grid-cols-2 gap-10 items-center">
+  </section>
+
+  <!-- SKLEP -->
+  <section id="sklep" class="py-20 max-w-7xl mx-auto px-6 space-y-16">
+
+    <!-- E-BOOK 1: Życie z histaminą -->
+    <div data-animate class="grid md:grid-cols-2 gap-10 items-center">
       <div>
-        <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight">
-          Sklep z <span class="text-brand">e‑bookami</span> i <span class="text-brand">merchem</span> —
-          <br /> szybciej niż zdążysz zaparzyć kawę ☕
-        </h1>
-        <p class="mt-5 text-base sm:text-lg opacity-80 max-w-xl">
-          Profesjonalne treści, limitowane wzory i natychmiastowa dostawa cyfrowa. Wszystko w jednym miejscu — prosto, estetycznie i z humorem.
-        </p>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a href="#sklep" class="rounded-xl px-5 py-3 bg-white/10 hover:bg-white/15 border border-white/10">Przejdź do sklepu</a>
-          <a href="https://buycoffee.to/punktonline" class="rounded-xl px-5 py-3 bg-brand text-black font-semibold hover:brightness-95">Szybki zakup</a>
-        </div>
-        <div class="mt-6 flex flex-wrap items-center gap-4 text-xs opacity-70">
-          <span>⚡ Dostawa e‑booka: natychmiast</span>
-          <span>•</span>
-          <span>🇩🇪 Obsługa DE/PL</span>
-          <span>•</span>
-          <span>❤️ DM na TikToku/IG</span>
+        <div style="position:relative; width:100%; height:0; padding-top:156.25%; box-shadow:0 2px 8px rgba(245,197,66,0.3); overflow:hidden; border-radius:12px;">
+          <iframe loading="lazy"
+            style="position:absolute; inset:0; width:100%; height:100%; border:0;"
+            src="https://www.canva.com/design/DAG2Wt-dBu8/LGxzLwhWjn92tKs7B9KF_A/view?embed"
+            allowfullscreen>
+          </iframe>
         </div>
       </div>
-      <div class="relative">
-        <div class="aspect-[4/3] rounded-3xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 overflow-hidden shadow-2xl">
-          <div class="h-full w-full grid grid-cols-2 gap-2 p-2">
-             <img src="https://images.unsplash.com/photo-1520975922284-7b6839a2b551?q=80&w=1200&auto=format&fit=crop" alt="Mockup 1" class="rounded-2xl object-cover w-full h-full">
-            <img src="punkt online.png" alt="Okładka e-booka Życie z histaminą" class="rounded-lg shadow-lg w-full h-auto">
-            <img src="https://images.unsplash.com/photo-1541435462379-86267b5a93d4?q=80&w=1200&auto=format&fit=crop" alt="Mockup 2" class="rounded-2xl object-cover w-full h-full">
-            <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1200&auto=format&fit=crop" alt="Mockup 3" class="rounded-2xl object-cover w-full h-full">
-            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop" alt="Mockup 4" class="rounded-2xl object-cover w-full h-full">
-          </div>
+      <div>
+        <h2 class="text-3xl font-serif text-gold mb-3">Życie z histaminą</h2>
+        <p class="opacity-80 mb-6 leading-relaxed">Prawdziwa historia kobiety, która od lat zmaga się z nietolerancją histaminy.  
+          E-book łączy osobiste doświadczenia z praktycznymi poradami i inspirującą drogą do zdrowia.  
+          To przewodnik po codzienności, która wymaga zrozumienia własnego ciała i emocji.</p>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a href="https://buycoffee.to/punktonline"
+             target="_blank"
+             class="bg-gold text-black px-5 py-3 rounded-lg text-center font-semibold hover:brightness-95">
+             🇵🇱 Kup w Polsce (Blik / przelew)
+          </a>
+          <a href="https://payhip.com/b/histamina"
+             target="_blank"
+             class="border border-gold/40 px-5 py-3 rounded-lg text-center hover:bg-white/10">
+             🌍 Kup automatycznie (karta / PayPal)
+          </a>
         </div>
-        <div class="absolute -bottom-4 -left-4 rotate-2 rounded-2xl bg-brand text-black text-xs font-semibold px-3 py-2 shadow-xl">
-          Nowości
-        </div>
+        <div class="mt-4 text-lg text-gold font-semibold">Cena: 20 zł</div>
       </div>
     </div>
-  </section>
 
-  <!-- FEATURES -->
-  <section id="dlaczego" class="py-16 lg:py-20">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-6">
-      <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
-        <div class="text-brand font-semibold">Szybkie płatności</div>
-        <p class="mt-2 opacity-80 text-sm">Kupujesz przez BuyCoffee — prosto i bez zakładania konta.</p>
+    <!-- E-BOOK 2: Nawrocki (placeholder) -->
+    <div data-animate class="grid md:grid-cols-2 gap-10 items-center">
+      <div class="rounded-lg bg-white/5 border border-white/10 aspect-[4/5] flex items-center justify-center text-gray-500 italic">
+        Okładka w przygotowaniu
       </div>
-      <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
-        <div class="text-brand font-semibold">Dostawa 0 sek.</div>
-        <p class="mt-2 opacity-80 text-sm">E‑booki otrzymujesz od razu na podany e‑mail.</p>
-      </div>
-      <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
-        <div class="text-brand font-semibold">Wsparcie twórcy</div>
-        <p class="mt-2 opacity-80 text-sm">Każdy zakup pomaga rozwijać nasze projekty i nowe treści.</p>
+      <div>
+        <h2 class="text-3xl font-serif text-gold mb-3">Karol Nawrocki. Dwie twarze, jedna historia</h2>
+        <p class="opacity-80 mb-6 leading-relaxed">Odważna biografia, która ukazuje dwie strony ludzkiej natury — siłę i słabość, prawdę i milczenie.  
+          Już wkrótce dostępna w sprzedaży na Punkt Online.</p>
+        <div class="text-gold font-semibold">W przygotowaniu</div>
       </div>
     </div>
-  </section>
 
-  <!-- SHOP -->
-  <section id="sklep" class="py-4 pb-20">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="flex items-end justify-between gap-4">
-        <h2 class="text-2xl sm:text-3xl font-bold">Sklep</h2>
-        <a href="https://buycoffee.to/punktonline" class="text-sm opacity-80 hover:opacity-100 underline underline-offset-4">Zobacz wszystkie produkty →</a>
-      </div>
-      <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Product card template (duplicate to add more) -->
-        <a href="https://buycoffee.to/punktonline" class="group rounded-3xl overflow-hidden border border-white/10 bg-white/5 hover:bg-white/10 transition">
-          <div class="relative">
-            <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1600&auto=format&fit=crop" alt="E‑book: Airfryer Pro — 50 przepisów" class="h-44 w-full object-cover" />
-            <div class="absolute left-3 top-3 rounded-full bg-black/70 text-[10px] px-2 py-1 border border-white/10">Bestseller</div>
-          </div>
-          <div class="p-4">
-            <div class="text-sm opacity-75">PDF • natychmiastowy dostęp</div>
-            <h3 class="mt-1 font-semibold leading-snug group-hover:underline underline-offset-4">E‑book: Airfryer Pro — 50 przepisów</h3>
-            <div class="mt-3 flex items-center justify-between">
-              <span class="text-brand font-bold">10 €</span>
-              <span class="text-xs opacity-70">Kup przez BuyCoffee</span>
-            </div>
-          </div>
-        </a>
-
-        <a href="https://buycoffee.to/punktonline" class="group rounded-3xl overflow-hidden border border-white/10 bg-white/5 hover:bg-white/10 transition">
-          <div class="relative">
-            <img src="https://images.unsplash.com/photo-1541435462379-86267b5a93d4?q=80&w=1600&auto=format&fit=crop" alt="E‑book: Liczba Mówi — mini wróżby" class="h-44 w-full object-cover" />
-            <div class="absolute left-3 top-3 rounded-full bg-black/70 text-[10px] px-2 py-1 border border-white/10">Nowość</div>
-          </div>
-          <div class="p-4">
-            <div class="text-sm opacity-75">PDF • 18 stron</div>
-            <h3 class="mt-1 font-semibold leading-snug group-hover:underline underline-offset-4">E‑book: Liczba Mówi — mini wróżby</h3>
-            <div class="mt-3 flex items-center justify-between">
-              <span class="text-brand font-bold">10 €</span>
-              <span class="text-xs opacity-70">Kup przez BuyCoffee</span>
-            </div>
-          </div>
-        </a>
-
-        <a href="https://buycoffee.to/punktonline" class="group rounded-3xl overflow-hidden border border-white/10 bg-white/5 hover:bg-white/10 transition">
-          <div class="relative">
-            <img src="https://images.unsplash.com/photo-1520975922284-7b6839a2b551?q=80&w=1600&auto=format&fit=crop" alt="Koszulka Puffo (żółta)" class="h-44 w-full object-cover" />
-            <div class="absolute left-3 top-3 rounded-full bg-black/70 text-[10px] px-2 py-1 border border-white/10">Ed. limitowana</div>
-          </div>
-          <div class="p-4">
-            <div class="text-sm opacity-75">Bawełna 180 g • S–XL</div>
-            <h3 class="mt-1 font-semibold leading-snug group-hover:underline underline-offset-4">Merch: Koszulka Puffo (żółta)</h3>
-            <div class="mt-3 flex items-center justify-between">
-              <span class="text-brand font-bold">24 €</span>
-              <span class="text-xs opacity-70">Kup przez BuyCoffee</span>
-            </div>
-          </div>
-        </a>
-
-        <a href="https://buycoffee.to/punktonline" class="group rounded-3xl overflow-hidden border border-white/10 bg-white/5 hover:bg-white/10 transition">
-          <div class="relative">
-            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600&auto=format&fit=crop" alt="Plakat Pieśni Wiary" class="h-44 w-full object-cover" />
-            <div class="absolute left-3 top-3 rounded-full bg-black/70 text-[10px] px-2 py-1 border border-white/10">Polecane</div>
-          </div>
-          <div class="p-4">
-            <div class="text-sm opacity-75">Matowy papier premium</div>
-            <h3 class="mt-1 font-semibold leading-snug group-hover:underline underline-offset-4">Plakat: Pieśni Wiary (A3)</h3>
-            <div class="mt-3 flex items-center justify-between">
-              <span class="text-brand font-bold">14 €</span>
-              <span class="text-xs opacity-70">Kup przez BuyCoffee</span>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- STRIP -->
-  <section class="py-12 border-y border-white/10 bg-white/[0.03]">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-      <p class="text-sm opacity-80">
-        „Szybko, pięknie i konkret. E‑book przyszedł od ręki, a koszulka — sztos.” — <span class="opacity-100">Klient</span>
-      </p>
-    </div>
   </section>
 
   <!-- FAQ -->
-  <section id="faq" class="py-16 lg:py-20">
-    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-      <h2 class="text-2xl sm:text-3xl font-bold">Najczęstsze pytania</h2>
-      <div class="mt-6 divide-y divide-white/10 rounded-2xl border border-white/10 bg-white/5">
-        <details class="group p-4">
-          <summary class="cursor-pointer list-none font-medium"><span class="group-open:text-brand">Jak dostanę e‑booka?</span></summary>
-          <p class="mt-2 text-sm opacity-80">Po płatności przez BuyCoffee odezwij się w wiadomości prywatnej (TikTok/IG) z adresem e‑mail. Wysyłka następuje zwykle w ciągu kilku minut.</p>
+  <section id="faq" class="py-16 bg-white/5 border-y border-white/10">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="text-3xl font-serif text-gold mb-8 text-center">Najczęstsze pytania</h2>
+      <div class="space-y-4">
+        <details class="group bg-white/5 rounded-lg p-4 border border-white/10">
+          <summary class="cursor-pointer font-semibold group-open:text-gold">Jak dostanę e-booka?</summary>
+          <p class="mt-2 opacity-80 text-sm">Po zakupie przez BuyCoffee — wyślij wiadomość z adresem e-mail.  
+          Po zakupie przez PayHip — e-book zostanie wysłany automatycznie.</p>
         </details>
-        <details class="group p-4">
-          <summary class="cursor-pointer list-none font-medium"><span class="group-open:text-brand">Czy wystawiacie fakturę?</span></summary>
-          <p class="mt-2 text-sm opacity-80">Tak — wpisz dane do faktury w wiadomości przy zakupie, a odeślemy PDF na e‑mail.</p>
+        <details class="group bg-white/5 rounded-lg p-4 border border-white/10">
+          <summary class="cursor-pointer font-semibold group-open:text-gold">Czy mogę zapłacić Blikiem?</summary>
+          <p class="mt-2 opacity-80 text-sm">Tak, wybierz opcję 🇵🇱 „Kup w Polsce (Blik / przelew)” — płatność odbywa się przez BuyCoffee.</p>
         </details>
-        <details class="group p-4">
-          <summary class="cursor-pointer list-none font-medium"><span class="group-open:text-brand">Czy merch jest dostępny od ręki?</span></summary>
-          <p class="mt-2 text-sm opacity-80">Wybrane rozmiary mamy na stanie. W razie braku — czas produkcji 3–5 dni roboczych.</p>
-        </details>
-        <details class="group p-4">
-          <summary class="cursor-pointer list-none font-medium"><span class="group-open:text-brand">Czy mogę zwrócić cyfrowy produkt?</span></summary>
-          <p class="mt-2 text-sm opacity-80">Zgodnie z prawem UE dostęp cyfrowy po dostarczeniu nie podlega zwrotowi, ale jeśli coś jest nie tak — napisz, zawsze pomożemy.</p>
+        <details class="group bg-white/5 rounded-lg p-4 border border-white/10">
+          <summary class="cursor-pointer font-semibold group-open:text-gold">Kiedy będzie kolejny e-book?</summary>
+          <p class="mt-2 opacity-80 text-sm">Nowe tytuły pojawiają się co miesiąc — śledź nas na TikToku i Instagramie, aby nie przegapić premier.</p>
         </details>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section id="kontakt" class="py-16">
-    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-8 items-start">
-      <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
-        <h3 class="text-xl font-semibold">Skontaktuj się</h3>
-        <p class="mt-2 text-sm opacity-80">
-          Napisz DM na TikToku lub Instagramie: <span class="opacity-100">@punktonline</span>.
-          Dołącz e‑mail do wysyłki e‑booka lub dane do faktury.
-        </p>
-        <div class="mt-4 grid sm:grid-cols-2 gap-3">
-          <a href="https://buycoffee.to/punktonline" class="rounded-xl px-4 py-3 bg-brand text-black font-semibold text-center hover:brightness-95">Kup przez BuyCoffee</a>
-          <a href="#" class="rounded-xl px-4 py-3 bg-white/10 text-center border border-white/10 hover:bg-white/15">Napisz na IG/TikTok</a>
-        </div>
-        <p class="mt-3 text-xs opacity-60">Godziny odpowiedzi: 10:00–20:00 (CEST).</p>
-      </div>
-      <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
-        <h3 class="text-xl font-semibold">Współpraca & B2B</h3>
-        <p class="mt-2 text-sm opacity-80">Projekty dedykowane, licencje, zamówienia hurtowe, afiliacja. Zapytaj o ofertę dla partnerów.</p>
-        <ul class="mt-4 text-sm list-disc list-inside opacity-90 space-y-1">
-          <li>Dedykowane e‑booki brandowane</li>
-          <li>Pakiety merchu na wydarzenia</li>
-          <li>Program „Zostań Ambasadorem LICZBY”</li>
-        </ul>
-      </div>
+  <!-- KONTAKT -->
+  <section id="kontakt" class="py-20 max-w-5xl mx-auto px-6">
+    <h2 class="text-3xl font-serif text-gold mb-6 text-center">Kontakt</h2>
+    <div class="text-center space-y-4">
+      <p class="opacity-80">📩 E-mail: <a href="mailto:punktonline@gmail.com" class="text-gold hover:underline">punktonline@gmail.com</a></p>
+      <p class="opacity-80">🎵 TikTok: <a href="https://www.tiktok.com/@punktonline" class="text-gold hover:underline">@punktonline</a></p>
+      <p class="opacity-80">📸 Instagram: <a href="https://www.instagram.com/punktonline" class="text-gold hover:underline">@punktonline</a></p>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="border-t border-white/10 py-10">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-6 items-center">
-      <div class="text-sm opacity-70">© 2025 Punkt Online — wszystkie prawa zastrzeżone.</div>
-      <div class="text-center text-sm">
-        <a href="#" class="opacity-80 hover:opacity-100">Regulamin</a>
-        <span class="px-2">•</span>
-        <a href="#" class="opacity-80 hover:opacity-100">Polityka prywatności</a>
-        <span class="px-2">•</span>
-        <a href="#" class="opacity-80 hover:opacity-100">Impressum</a>
-      </div>
-      <div class="text-right text-sm opacity-80">🤝 Made with miłość & kawa</div>
-    </div>
+  <footer class="py-8 border-t border-white/10 text-center text-sm opacity-70">
+    <p>© 2025 Punkt Online — prawdziwe historie o zdrowiu i życiu.</p>
   </footer>
 
+  <!-- Animacje wejścia -->
   <script>
-    // Mobile menu toggle
-    document.getElementById('menuBtn')?.addEventListener('click', () => {
-      const m = document.getElementById('mobileMenu');
-      if (!m) return;
-      m.classList.toggle('hidden');
-    });
+    const elements = document.querySelectorAll('[data-animate]');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.2 });
+    elements.forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
