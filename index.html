@@ -5,7 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Punkt Online — prawdziwe historie o zdrowiu i życiu</title>
 <meta name="description" content="E-booki, które poruszają. Kup przez BuyCoffee (PL) lub PayHip (globalnie).">
+
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+
+<!-- SEO / kanoniczny -->
+<meta name="author" content="Punkt Online">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://punktonline.github.io/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Punkt Online — e-booki, które poruszają">
+<meta property="og:description" content="Niewidzialna Choroba Histamina oraz Karol Nawrocki — Dwie Twarze Jedna Historia. Kup w Polsce (BuyCoffee) lub globalnie (PayHip).">
+<meta property="og:url" content="https://punktonline.github.io/">
+<meta property="og:image" content="https://punktonline.github.io/assets/og-image.jpg"><!-- ⚠️ podmień na swój 1200x630 -->
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Punkt Online — e-booki, które poruszają">
+<meta name="twitter:description" content="Dwie pozycje: Histamina i Nawrocki. Kup wygodnie online.">
+<meta name="twitter:image" content="https://punktonline.github.io/assets/og-image.jpg"><!-- ⚠️ jak wyżej -->
+
+<!-- Preconnect dla szybkości -->
+<link rel="preconnect" href="https://www.canva.com">
+<link rel="preconnect" href="https://payhip.com">
 
 <!-- Fonts + Tailwind -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
@@ -33,24 +56,33 @@
   /* 3D tilt */
   .tilt{transform-style:preserve-3d; transform:perspective(1000px)}
   .tilt > *[data-tilt]{transform:translateZ(30px)}
-  /* Parallax bg */
+  /* Tła */
   .bg-orb:before,.bg-orb:after{
     content:"";position:absolute;border-radius:9999px;filter:blur(72px);opacity:.35;z-index:-1
   }
   .bg-orb:before{width:420px;height:420px;left:-120px;top:-60px;background:radial-gradient(closest-side,#f5c542,#0000)}
   .bg-orb:after{width:380px;height:380px;right:-100px;bottom:-80px;background:radial-gradient(closest-side,#f5c542,#0000)}
-  /* Buttons hover shine */
+  /* Shine */
   .shine{position:relative;overflow:hidden}
   .shine:before{content:"";position:absolute;inset:-100% -30%;background:linear-gradient(75deg,transparent,rgba(255,255,255,.35),transparent);transform:translateX(-100%);transition:transform .7s ease}
   .shine:hover:before{transform:translateX(100%)}
-  /* Animate in */
+  /* Reveal */
   [data-animate]{opacity:0;transform:translateY(14px);transition:all .6s ease}
   [data-animate].visible{opacity:1;transform:none}
 </style>
+
+<!-- GA4 (opcjonalnie) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX'); /* ⚠️ wstaw swój GA4 ID */
+</script>
 </head>
 
 <body class="selection:bg-gold/20">
-  <!-- BACKGROUND ORBS -->
+  <!-- ORBS -->
   <div class="fixed inset-0 bg-orb pointer-events-none"></div>
 
   <!-- HEADER -->
@@ -68,7 +100,7 @@
     </div>
   </header>
 
-  <!-- HERO (z Canvą, mniejsze) -->
+  <!-- HERO -->
   <section id="top" class="relative">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18 grid lg:grid-cols-2 gap-8 items-center">
       <!-- Tekst -->
@@ -86,7 +118,7 @@
           </div>
         </div>
       </div>
-      <!-- Podgląd z Canvy (Histamina) -->
+      <!-- Podgląd (Canva: Histamina) -->
       <div class="tilt" data-animate>
         <div class="relative rounded-2xl ring-gold shadow-soft overflow-hidden max-w-[520px] mx-auto">
           <div style="position:relative;width:100%;height:0;padding-top:56.25%;border-radius:12px;overflow:hidden;">
@@ -103,24 +135,20 @@
     </div>
   </section>
 
-  <!-- SKLEP (karty zwężone) -->
+  <!-- SKLEP -->
   <section id="sklep" class="py-14 sm:py-18">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <h2 class="text-2xl sm:text-3xl font-serif text-gold text-center mb-8">Sklep</h2>
 
       <div class="grid md:grid-cols-2 gap-6">
-        <!-- PRODUCT 1: HISTAMINA -->
+        <!-- HISTAMINA -->
         <article class="tilt max-w-[360px] mx-auto" data-animate>
           <div class="group rounded-2xl glass ring-gold shadow-soft overflow-hidden p-4 transition-transform">
             <div class="relative rounded-xl overflow-hidden shadow-glow">
-              <!-- Canva embed: HISTAMINA -->
-              <div style="position: relative; width: 100%; height: 0; padding-top: 136.0544%; margin-top: 1.1em; margin-bottom: 0.6em; overflow: hidden; border-radius: 12px; box-shadow: 0 2px 8px rgba(63,69,81,0.16);">
-                <iframe
-                  loading="lazy"
-                  style="position:absolute; inset:0; width:100%; height:100%; border:0;"
-                  src="https://www.canva.com/design/DAG2WDWIpPg/KHB6hGtBG05UgWURXwgbiA/view?embed"
-                  allowfullscreen>
-                </iframe>
+              <div style="position:relative;width:100%;height:0;padding-top:136.0544%;margin-top:1.1em;margin-bottom:.6em;overflow:hidden;border-radius:12px;box-shadow:0 2px 8px rgba(63,69,81,.16);">
+                <iframe loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;border:0;"
+                        src="https://www.canva.com/design/DAG2WDWIpPg/KHB6hGtBG05UgWURXwgbiA/view?embed"
+                        allowfullscreen></iframe>
               </div>
               <span class="absolute top-2 left-2 px-2.5 py-0.5 rounded-full bg-black/60 border border-white/10 text-[10px]">E-BOOK</span>
               <span class="absolute top-2 right-2 px-2.5 py-0.5 rounded-full bg-gold text-black text-[10px] font-semibold">20 zł</span>
@@ -128,36 +156,30 @@
 
             <div class="mt-4">
               <h3 class="font-serif text-xl text-gold">Niewidzialna choroba — HISTAMINA</h3>
-              <p class="mt-1.5 text-xs text-white/80 leading-relaxed">
-                Prawdziwa historia życia z nietolerancją histaminy + praktyczne wskazówki na co dzień.
-              </p>
+              <p class="mt-1.5 text-xs text-white/80 leading-relaxed">Prawdziwa historia życia z nietolerancją histaminy + praktyczne wskazówki na co dzień.</p>
               <ul class="mt-2 text-[11px] text-white/70 space-y-0.5">
                 <li>• PDF, natychmiastowa dostawa</li>
                 <li>• Estetyczny skład, gotowy do druku</li>
               </ul>
-
               <div class="mt-4 flex flex-col sm:flex-row gap-2.5">
                 <a href="https://buycoffee.to/punktonline" target="_blank" rel="noopener"
                    class="shine bg-gold text-black px-4 py-2 rounded-lg text-center font-semibold shadow-glow text-sm">🇵🇱 Kup w Polsce</a>
-                <a href="https://payhip.com/punktonline" target="_blank" rel="noopener"
+                <a href="https://payhip.com/b/SIR6v?utm_source=site&utm_medium=card&utm_campaign=histamina"
+                   target="_blank" rel="noopener"
                    class="px-4 py-2 rounded-lg border border-gold/40 text-center hover:bg-white/10 text-sm">🌍 PayHip</a>
               </div>
             </div>
           </div>
         </article>
 
-        <!-- PRODUCT 2: NAWROCKI -->
+        <!-- NAWROCKI -->
         <article class="tilt max-w-[360px] mx-auto" data-animate>
           <div class="group rounded-2xl glass ring-gold shadow-soft overflow-hidden p-4 transition-transform">
             <div class="relative rounded-xl overflow-hidden shadow-glow">
-              <!-- Canva embed: NAWROCKI -->
-              <div style="position: relative; width: 100%; height: 0; padding-top: 136.0544%; margin-top: 1.1em; margin-bottom: 0.6em; overflow: hidden; border-radius: 12px; box-shadow: 0 2px 8px rgba(63,69,81,0.16);">
-                <iframe
-                  loading="lazy"
-                  style="position:absolute; inset:0; width:100%; height:100%; border:0;"
-                  src="https://www.canva.com/design/DAG2aYIfchc/es1LL8nr1mSvWATK7qj8zw/view?embed"
-                  allowfullscreen>
-                </iframe>
+              <div style="position:relative;width:100%;height:0;padding-top:136.0544%;margin-top:1.1em;margin-bottom:.6em;overflow:hidden;border-radius:12px;box-shadow:0 2px 8px rgba(63,69,81,.16);">
+                <iframe loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;border:0;"
+                        src="https://www.canva.com/design/DAG2aYIfchc/es1LL8nr1mSvWATK7qj8zw/view?embed"
+                        allowfullscreen></iframe>
               </div>
               <span class="absolute top-2 left-2 px-2.5 py-0.5 rounded-full bg-black/60 border border-white/10 text-[10px]">E-BOOK</span>
               <span class="absolute top-2 right-2 px-2.5 py-0.5 rounded-full bg-gold text-black text-[10px] font-semibold">10 zł</span>
@@ -165,18 +187,16 @@
 
             <div class="mt-4">
               <h3 class="font-serif text-xl text-gold">Karol Nawrocki — <span class="text-white/95 italic">Dwie Twarze Jedna Historia</span></h3>
-              <p class="mt-1.5 text-xs text-white/80 leading-relaxed">
-                Dwugłos o sile i słabości. Opowieść o wyborach, które dzielą — i o prawdzie, która łączy.
-              </p>
+              <p class="mt-1.5 text-xs text-white/80 leading-relaxed">Dwugłos o sile i słabości. Opowieść o wyborach, które dzielą — i o prawdzie, która łączy.</p>
               <ul class="mt-2 text-[11px] text-white/70 space-y-0.5">
                 <li>• PDF, natychmiastowa dostawa</li>
                 <li>• Rozdziały krótkie, reportażowe</li>
               </ul>
-
               <div class="mt-4 flex flex-col sm:flex-row gap-2.5">
                 <a href="https://buycoffee.to/punktonline" target="_blank" rel="noopener"
                    class="shine bg-gold text-black px-4 py-2 rounded-lg text-center font-semibold shadow-glow text-sm">🇵🇱 Kup w Polsce</a>
-                <a href="https://payhip.com/punktonline" target="_blank" rel="noopener"
+                <a href="https://payhip.com/punktonline?utm_source=site&utm_medium=card&utm_campaign=nawrocki"
+                   target="_blank" rel="noopener"
                    class="px-4 py-2 rounded-lg border border-gold/40 text-center hover:bg-white/10 text-sm">🌍 PayHip</a>
               </div>
             </div>
@@ -184,12 +204,44 @@
         </article>
       </div>
 
-      <!-- LINK DO CAŁEGO SKLEPU -->
+      <!-- Link do całego sklepu -->
       <div class="text-center mt-10">
-        <a href="https://payhip.com/punktonline" target="_blank" rel="noopener"
+        <a href="https://payhip.com/punktonline?utm_source=site&utm_medium=button&utm_campaign=shop_all"
+           target="_blank" rel="noopener"
            class="shine bg-gold text-black px-6 py-3 rounded-lg font-semibold shadow-glow text-base">🛒 Zobacz cały sklep na PayHip</a>
       </div>
 
+      <!-- Trust badges -->
+      <div class="max-w-6xl mx-auto mt-8 grid sm:grid-cols-3 gap-3 text-center text-sm text-white/80">
+        <div class="glass rounded-lg py-3 border border-white/10">🔒 Bezpieczna płatność (BuyCoffee / PayHip)</div>
+        <div class="glass rounded-lg py-3 border border-white/10">⚡ Natychmiastowa dostawa PDF</div>
+        <div class="glass rounded-lg py-3 border border-white/10">📧 Wsparcie: <a class="text-gold underline" href="mailto:punktonline@gmail.com">punktonline@gmail.com</a></div>
+      </div>
+
+      <!-- Udostępnij -->
+      <div class="text-center mt-8 flex items-center justify-center gap-3">
+        <a class="px-3 py-2 rounded-lg border border-white/15 hover:bg-white/10 text-sm"
+           href="https://wa.me/?text=Sprawdź%20e-booki%20Punkt%20Online:%20https://punktonline.github.io" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="px-3 py-2 rounded-lg border border-white/15 hover:bg-white/10 text-sm"
+           href="https://www.facebook.com/sharer/sharer.php?u=https://punktonline.github.io" target="_blank" rel="noopener">Facebook</a>
+        <a class="px-3 py-2 rounded-lg border border-white/15 hover:bg-white/10 text-sm"
+           href="https://twitter.com/intent/tweet?url=https://punktonline.github.io&text=E-booki%20Punkt%20Online" target="_blank" rel="noopener">X/Twitter</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="py-12">
+    <div class="max-w-lg mx-auto px-4 text-center">
+      <h3 class="text-2xl font-serif text-gold mb-3">Dołącz do listy premier</h3>
+      <p class="text-white/80 text-sm mb-4">Nowe tytuły raz w miesiącu. Zero spamu.</p>
+      <form action="https://formspree.io/f/yourFormID" method="POST" class="flex gap-2 justify-center">
+        <input required name="email" type="email" placeholder="Twój e-mail"
+               class="w-full max-w-xs px-3 py-2 rounded-lg bg-white/5 border border-white/15 focus:border-gold/60 outline-none"/>
+        <button class="shine bg-gold text-black px-4 py-2 rounded-lg font-semibold">Zapisz się</button>
+      </form>
+      <!-- ⚠️ Podmień yourFormID na swój identyfikator z Formspree -->
     </div>
   </section>
 
@@ -229,27 +281,46 @@
     <p>© 2025 Punkt Online — prawdziwe historie o zdrowiu i życiu.</p>
   </footer>
 
+  <!-- Sticky CTA (mobile) -->
+  <div class="md:hidden fixed bottom-0 inset-x-0 z-50 bg-black/75 backdrop-blur border-t border-white/10">
+    <div class="max-w-6xl mx-auto px-4 py-2.5 flex items-center justify-between gap-3">
+      <span class="text-sm text-white/80">E-booki: Histamina & Nawrocki</span>
+      <a href="https://payhip.com/punktonline?utm_source=site&utm_medium=sticky_cta&utm_campaign=shop"
+         target="_blank" rel="noopener"
+         class="shine bg-gold text-black px-4 py-2 rounded-lg font-semibold">🛒 Kup teraz</a>
+    </div>
+  </div>
+
   <!-- Scripts -->
   <script>
-    // Tilt effect
+    // Tilt
     document.querySelectorAll('.tilt').forEach(card=>{
-      let rAF;
-      const max = 8;
+      let rAF; const max=8;
       function move(e){
-        const rect = card.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - .5;
-        const y = (e.clientY - rect.top) / rect.height - .5;
-        card.style.transform = `perspective(900px) rotateY(${x*max}deg) rotateX(${-y*max}deg)`;
+        const r=card.getBoundingClientRect();
+        const x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+        card.style.transform=`perspective(900px) rotateY(${x*max}deg) rotateX(${ -y*max}deg)`;
       }
-      card.addEventListener('mousemove', e => { cancelAnimationFrame(rAF); rAF=requestAnimationFrame(()=>move(e)); });
-      card.addEventListener('mouseleave', ()=> card.style.transform = 'perspective(900px) rotateY(0) rotateX(0)');
+      card.addEventListener('mousemove', e=>{ cancelAnimationFrame(rAF); rAF=requestAnimationFrame(()=>move(e)); });
+      card.addEventListener('mouseleave', ()=> card.style.transform='perspective(900px) rotateY(0) rotateX(0)');
     });
 
     // Reveal on scroll
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
-    },{threshold:.2});
+    const io=new IntersectionObserver((entries)=>entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); }),{threshold:.2});
     document.querySelectorAll('[data-animate]').forEach(el=>io.observe(el));
+  </script>
+
+  <!-- FAQ schema JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Jak dostanę e-booka?","acceptedAnswer":{"@type":"Answer","text":"Kupując przez BuyCoffee — podaj e-mail i wyślemy plik ręcznie. Przez PayHip — e-book przyjdzie automatycznie po płatności."}},
+      {"@type":"Question","name":"Czy mogę zapłacić Blikiem?","acceptedAnswer":{"@type":"Answer","text":"Tak, w opcji 🇵🇱 Kup w Polsce (BuyCoffee). Globalnie zapłacisz kartą lub PayPalem przez PayHip."}},
+      {"@type":"Question","name":"Kiedy będzie kolejny e-book?","acceptedAnswer":{"@type":"Answer","text":"Planujemy nowe tytuły co miesiąc. Zajrzyj na TikTok/Instagram @punktonline, by nie przegapić premiery."}}
+    ]
+  }
   </script>
 </body>
 </html>
