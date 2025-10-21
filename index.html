@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Punkt Online — prawdziwe historie o zdrowiu i życiu</title>
 <meta name="description" content="E-booki, które poruszają. Kup przez BuyCoffee (PL) lub PayHip (globalnie).">
-
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 
 <!-- SEO / kanoniczny -->
@@ -18,15 +17,15 @@
 <meta property="og:title" content="Punkt Online — e-booki, które poruszają">
 <meta property="og:description" content="Niewidzialna Choroba Histamina oraz Karol Nawrocki — Dwie Twarze Jedna Historia. Kup w Polsce (BuyCoffee) lub globalnie (PayHip).">
 <meta property="og:url" content="https://punktonline.github.io/">
-<meta property="og:image" content="https://punktonline.github.io/assets/og-image.jpg"><!-- ⚠️ podmień na swój 1200x630 -->
+<meta property="og:image" content="https://punktonline.github.io/assets/og-image.jpg"><!-- podmień na swój 1200x630 -->
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Punkt Online — e-booki, które poruszają">
 <meta name="twitter:description" content="Dwie pozycje: Histamina i Nawrocki. Kup wygodnie online.">
-<meta name="twitter:image" content="https://punktonline.github.io/assets/og-image.jpg"><!-- ⚠️ jak wyżej -->
+<meta name="twitter:image" content="https://punktonline.github.io/assets/og-image.jpg">
 
-<!-- Preconnect dla szybkości -->
+<!-- Preconnect -->
 <link rel="preconnect" href="https://www.canva.com">
 <link rel="preconnect" href="https://payhip.com">
 
@@ -53,32 +52,17 @@
   html,body{background:#0b0b0f;color:#fff;scroll-behavior:smooth}
   .glass{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));backdrop-filter:blur(8px)}
   .ring-gold{box-shadow:0 0 0 1px rgba(245,197,66,.25)}
-  /* 3D tilt */
   .tilt{transform-style:preserve-3d; transform:perspective(1000px)}
   .tilt > *[data-tilt]{transform:translateZ(30px)}
-  /* Tła */
-  .bg-orb:before,.bg-orb:after{
-    content:"";position:absolute;border-radius:9999px;filter:blur(72px);opacity:.35;z-index:-1
-  }
+  .bg-orb:before,.bg-orb:after{content:"";position:absolute;border-radius:9999px;filter:blur(72px);opacity:.35;z-index:-1}
   .bg-orb:before{width:420px;height:420px;left:-120px;top:-60px;background:radial-gradient(closest-side,#f5c542,#0000)}
   .bg-orb:after{width:380px;height:380px;right:-100px;bottom:-80px;background:radial-gradient(closest-side,#f5c542,#0000)}
-  /* Shine */
   .shine{position:relative;overflow:hidden}
   .shine:before{content:"";position:absolute;inset:-100% -30%;background:linear-gradient(75deg,transparent,rgba(255,255,255,.35),transparent);transform:translateX(-100%);transition:transform .7s ease}
   .shine:hover:before{transform:translateX(100%)}
-  /* Reveal */
   [data-animate]{opacity:0;transform:translateY(14px);transition:all .6s ease}
   [data-animate].visible{opacity:1;transform:none}
 </style>
-
-<!-- GA4 (opcjonalnie) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX'); /* ⚠️ wstaw swój GA4 ID */
-</script>
 </head>
 
 <body class="selection:bg-gold/20">
@@ -103,7 +87,6 @@
   <!-- HERO -->
   <section id="top" class="relative">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18 grid lg:grid-cols-2 gap-8 items-center">
-      <!-- Tekst -->
       <div class="tilt" data-animate>
         <div class="rounded-2xl glass ring-gold shadow-soft p-5 sm:p-6">
           <h1 class="font-serif text-gold text-3xl sm:text-5xl leading-tight" data-tilt>
@@ -118,14 +101,12 @@
           </div>
         </div>
       </div>
-      <!-- Podgląd (Canva: Histamina) -->
       <div class="tilt" data-animate>
         <div class="relative rounded-2xl ring-gold shadow-soft overflow-hidden max-w-[520px] mx-auto">
           <div style="position:relative;width:100%;height:0;padding-top:56.25%;border-radius:12px;overflow:hidden;">
             <iframe loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;border:0;"
               src="https://www.canva.com/design/DAG2WDWIpPg/KHB6hGtBG05UgWURXwgbiA/view?embed" allowfullscreen></iframe>
           </div>
-          <div class="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/40 to-transparent"></div>
           <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs">
             <span class="tracking-widest text-white/80">PREMIUM • PDF</span>
             <span class="px-2.5 py-0.5 rounded-full bg-gold text-black font-semibold">Punkt Online</span>
@@ -208,26 +189,18 @@
       <div class="text-center mt-10">
         <a href="https://payhip.com/punktonline?utm_source=site&utm_medium=button&utm_campaign=shop_all"
            target="_blank" rel="noopener"
-           class="shine bg-gold text-black px-6 py-3 rounded-lg font-semibold shadow-glow text-base">🛒 Zobacz cały sklep na PayHip</a>
+           class="shine bg-gold text-black px-6 py-3 rounded-lg font-semibold shadow-glow text-base">
+           🛒 Zobacz cały sklep na PayHip
+        </a>
       </div>
 
-      <!-- Trust badges -->
-      <div class="max-w-6xl mx-auto mt-8 grid sm:grid-cols-3 gap-3 text-center text-sm text-white/80">
+      <!-- Trust badges (bez „Wsparcia”) -->
+      <div class="max-w-6xl mx-auto mt-8 grid sm:grid-cols-2 gap-3 text-center text-sm text-white/80">
         <div class="glass rounded-lg py-3 border border-white/10">🔒 Bezpieczna płatność (BuyCoffee / PayHip)</div>
         <div class="glass rounded-lg py-3 border border-white/10">⚡ Natychmiastowa dostawa PDF</div>
-        <div class="glass rounded-lg py-3 border border-white/10">📧 Wsparcie: <a class="text-gold underline" href="mailto:punktonline@gmail.com">punktonline@gmail.com</a></div>
       </div>
 
-      <!-- Udostępnij -->
-      <div class="text-center mt-8 flex items-center justify-center gap-3">
-        <a class="px-3 py-2 rounded-lg border border-white/15 hover:bg-white/10 text-sm"
-           href="https://wa.me/?text=Sprawdź%20e-booki%20Punkt%20Online:%20https://punktonline.github.io" target="_blank" rel="noopener">WhatsApp</a>
-        <a class="px-3 py-2 rounded-lg border border-white/15 hover:bg-white/10 text-sm"
-           href="https://www.facebook.com/sharer/sharer.php?u=https://punktonline.github.io" target="_blank" rel="noopener">Facebook</a>
-        <a class="px-3 py-2 rounded-lg border border-white/15 hover:bg-white/10 text-sm"
-           href="https://twitter.com/intent/tweet?url=https://punktonline.github.io&text=E-booki%20Punkt%20Online" target="_blank" rel="noopener">X/Twitter</a>
-      </div>
-
+      <!-- (USUNIĘTO blok „Udostępnij znajomym”) -->
     </div>
   </section>
 
@@ -241,7 +214,6 @@
                class="w-full max-w-xs px-3 py-2 rounded-lg bg-white/5 border border-white/15 focus:border-gold/60 outline-none"/>
         <button class="shine bg-gold text-black px-4 py-2 rounded-lg font-semibold">Zapisz się</button>
       </form>
-      <!-- ⚠️ Podmień yourFormID na swój identyfikator z Formspree -->
     </div>
   </section>
 
@@ -312,15 +284,11 @@
 
   <!-- FAQ schema JSON-LD -->
   <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {"@type":"Question","name":"Jak dostanę e-booka?","acceptedAnswer":{"@type":"Answer","text":"Kupując przez BuyCoffee — podaj e-mail i wyślemy plik ręcznie. Przez PayHip — e-book przyjdzie automatycznie po płatności."}},
-      {"@type":"Question","name":"Czy mogę zapłacić Blikiem?","acceptedAnswer":{"@type":"Answer","text":"Tak, w opcji 🇵🇱 Kup w Polsce (BuyCoffee). Globalnie zapłacisz kartą lub PayPalem przez PayHip."}},
-      {"@type":"Question","name":"Kiedy będzie kolejny e-book?","acceptedAnswer":{"@type":"Answer","text":"Planujemy nowe tytuły co miesiąc. Zajrzyj na TikTok/Instagram @punktonline, by nie przegapić premiery."}}
-    ]
-  }
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Jak dostanę e-booka?","acceptedAnswer":{"@type":"Answer","text":"BuyCoffee — podaj e-mail i wyślemy plik ręcznie. PayHip — e-book przyjdzie automatycznie po płatności."}},
+    {"@type":"Question","name":"Czy mogę zapłacić Blikiem?","acceptedAnswer":{"@type":"Answer","text":"Tak, w opcji 🇵🇱 Kup w Polsce (BuyCoffee). Globalnie zapłacisz kartą lub PayPalem przez PayHip."}},
+    {"@type":"Question","name":"Czy będzie więcej tytułów?","acceptedAnswer":{"@type":"Answer","text":"Planujemy nowe tytuły co miesiąc. Zajrzyj na TikTok/Instagram @punktonline, by nie przegapić premiery."}}
+  ]}
   </script>
 </body>
 </html>
