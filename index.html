@@ -1,201 +1,233 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Punkt Online — prawdziwe historie o zdrowiu i życiu</title>
+<meta name="description" content="E-booki, które poruszają. Kup przez BuyCoffee (PL) lub PayHip (globalnie).">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 
-  <title>Punkt Online — prawdziwe historie o zdrowiu i życiu</title>
-  <meta name="description" content="E‑booki, które dotykają prawdy. Kup przez BuyCoffee (PL) lub PayHip (globalnie). Styl: czerń + złoto, Inter + Playfair Display." />
-
-  <!-- Open Graph / Twitter -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Punkt Online — prawdziwe historie o zdrowiu i życiu" />
-  <meta property="og:description" content="E‑booki, które poruszają i inspirują. Kup dziś przez BuyCoffee lub PayHip." />
-  <meta property="og:image" content="assets/og-image.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
-
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            dark: '#0b0b0f',
-            gold: '#f5c542'
-          },
-          fontFamily: {
-            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-            serif: ['Playfair Display', 'ui-serif', 'Georgia', 'serif']
-          },
-          boxShadow: {
-            gold: '0 0 0 1px rgba(245,197,66,0.25), 0 8px 30px rgba(245,197,66,0.15)'
-          }
+<!-- Fonts + Tailwind -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: { dark:'#0b0b0f', gold:'#f5c542' },
+        fontFamily: { sans:['Inter','ui-sans-serif','system-ui'], serif:['Playfair Display','ui-serif','Georgia'] },
+        boxShadow: {
+          glow: '0 0 0 1px rgba(245,197,66,.35), 0 10px 40px rgba(245,197,66,.18)',
+          soft: '0 12px 40px rgba(0,0,0,.35)'
         }
       }
     }
-  </script>
+  }
+</script>
 
-  <style>
-    html, body { background:#0b0b0f; color:#fff; scroll-behavior:smooth; }
-    [data-animate]{ opacity:.0; transform:translateY(16px); transition:all .7s ease; }
-    [data-animate].visible{ opacity:1; transform:none; }
-    .focus-ring:focus{ outline:2px solid #f5c542; outline-offset:2px; }
-  </style>
+<style>
+  html,body{background:#0b0b0f;color:#fff;scroll-behavior:smooth}
+  .glass{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));backdrop-filter:blur(8px)}
+  .ring-gold{box-shadow:0 0 0 1px rgba(245,197,66,.25)}
+  /* 3D tilt */
+  .tilt{transform-style:preserve-3d; transform:perspective(1000px)}
+  .tilt > *[data-tilt]{transform:translateZ(40px)}
+  .tilt img{transform:translateZ(55px)}
+  /* Parallax bg */
+  .bg-orb:before,.bg-orb:after{
+    content:"";position:absolute;border-radius:9999px;filter:blur(72px);opacity:.35;z-index:-1
+  }
+  .bg-orb:before{width:520px;height:520px;left:-140px;top:-80px;background:radial-gradient(closest-side,#f5c542,#0000)}
+  .bg-orb:after{width:480px;height:480px;right:-120px;bottom:-100px;background:radial-gradient(closest-side,#f5c542,#0000)}
+  /* Buttons hover shine */
+  .shine{position:relative;overflow:hidden}
+  .shine:before{content:"";position:absolute;inset:-100% -30%;background:linear-gradient(75deg,transparent,rgba(255,255,255,.35),transparent);transform:translateX(-100%);transition:transform .7s ease}
+  .shine:hover:before{transform:translateX(100%)}
+  /* Animate in */
+  [data-animate]{opacity:0;transform:translateY(16px);transition:all .7s ease}
+  [data-animate].visible{opacity:1;transform:none}
+</style>
 </head>
 
-<body class="min-h-screen flex flex-col selection:bg-gold/20">
-  <!-- Header -->
-  <header class="sticky top-0 z-40 bg-dark/90 backdrop-blur border-b border-white/10">
+<body class="selection:bg-gold/20">
+  <!-- BACKGROUND ORBS -->
+  <div class="fixed inset-0 bg-orb pointer-events-none"></div>
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-40 border-b border-white/10 bg-dark/80 backdrop-blur">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-      <a href="#top" class="flex items-center gap-3 group" aria-label="Punkt Online - strona główna">
-        <img src="assets/logo-punkt-online.png" alt="Punkt Online — logo" class="h-10 w-auto rounded-md" loading="eager" />
-        <span class="font-semibold text-gold tracking-wide group-hover:opacity-90">Punkt Online</span>
+      <a href="#top" class="flex items-center gap-3" aria-label="Punkt Online – strona główna">
+        <span class="text-lg font-semibold tracking-wide text-gold">Punkt Online</span>
       </a>
       <nav class="hidden md:flex items-center gap-6 text-sm">
-        <a href="#sklep" class="hover:text-gold transition focus-ring">Sklep</a>
-        <a href="#faq" class="hover:text-gold transition focus-ring">FAQ</a>
-        <a href="#kontakt" class="hover:text-gold transition focus-ring">Kontakt</a>
+        <a href="#sklep" class="hover:text-gold">Sklep</a>
+        <a href="#faq" class="hover:text-gold">FAQ</a>
+        <a href="#kontakt" class="hover:text-gold">Kontakt</a>
       </nav>
-      <a href="#sklep" class="md:hidden inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 hover:border-gold/50 focus-ring">
-        <span class="text-sm">Sklep</span>
-      </a>
+      <a href="#sklep" class="md:hidden px-3 py-2 rounded-lg border border-white/15 hover:border-gold/50">Sklep</a>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section id="top" class="relative isolate">
-    <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent" aria-hidden="true"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24 text-center">
-      <h1 class="text-4xl sm:text-6xl font-serif text-gold">Punkt Online</h1>
-      <p class="mt-4 text-lg sm:text-xl opacity-90 max-w-3xl mx-auto">Prawdziwe historie o zdrowiu i życiu — opowieści, które poruszają i inspirują. Każdy e‑book to osobista podróż, którą możesz rozpocząć już teraz.</p>
-      <div class="mt-8 flex items-center justify-center gap-3">
-        <a href="#sklep" class="bg-gold text-black px-6 py-3 rounded-lg font-semibold hover:brightness-95 focus-ring shadow-gold">Zobacz e‑booki</a>
-        <a href="#faq" class="px-6 py-3 rounded-lg border border-white/15 hover:border-gold/50 focus-ring">Jak to działa?</a>
+  <!-- HERO -->
+  <section id="top" class="relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24 grid lg:grid-cols-2 gap-10 items-center">
+      <!-- 3D block -->
+      <div class="tilt" data-animate>
+        <div class="rounded-2xl glass ring-gold shadow-soft p-6 sm:p-8">
+          <h1 class="font-serif text-gold text-4xl sm:text-6xl leading-tight" data-tilt>
+            Prawdziwe historie<br><span class="text-white/90">o zdrowiu i życiu</span>
+          </h1>
+          <p class="mt-4 text-white/80 max-w-xl" data-tilt>
+            E-booki, które poruszają i pomagają. Kup w Polsce przez BuyCoffee lub globalnie przez PayHip.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3" data-tilt>
+            <a href="#sklep" class="shine bg-gold text-black px-6 py-3 rounded-lg font-semibold shadow-glow">Zobacz e-booki</a>
+            <a href="#faq" class="px-6 py-3 rounded-lg border border-white/15 hover:border-gold/50">Jak to działa?</a>
+          </div>
+        </div>
+      </div>
+      <!-- Mock „3D półka” -->
+      <div class="tilt" data-animate>
+        <div class="relative rounded-2xl ring-gold shadow-soft overflow-hidden">
+          <img src="assets/histamina-cover.jpg" alt="Okładka podgląd" class="w-full aspect-[16/10] object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+            <span class="text-sm tracking-widest text-white/80">PREMIUM • PDF</span>
+            <span class="px-3 py-1 rounded-full bg-gold text-black text-sm font-semibold">Punkt Online</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Sklep -->
+  <!-- SKLEP -->
   <section id="sklep" class="py-16 sm:py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <h2 class="text-3xl sm:text-4xl font-serif text-gold text-center mb-12">Sklep</h2>
+      <h2 class="text-3xl sm:text-4xl font-serif text-gold text-center mb-10">Sklep</h2>
 
-      <div class="grid md:grid-cols-2 gap-10 items-center mb-20" data-animate>
-        <!-- Podgląd okładki z Canvy -->
-        <div class="rounded-xl overflow-hidden shadow-gold">
-          <div style="position:relative;padding-top:156.25%;height:0;">
-            <iframe loading="lazy" title="Życie z histaminą — podgląd okładki" style="position:absolute;inset:0;width:100%;height:100%;border:0;" src="https://www.canva.com/design/DAG2Wt-dBu8/LGxzLwhWjn92tKs7B9KF_A/view?embed" allowfullscreen></iframe>
+      <div class="grid lg:grid-cols-2 gap-8">
+        <!-- PRODUCT 1: HISTAMINA -->
+        <article class="tilt" data-animate>
+          <div class="group rounded-2xl glass ring-gold shadow-soft overflow-hidden p-4 sm:p-5 transition-transform">
+            <div class="relative rounded-xl overflow-hidden shadow-glow">
+              <!-- PODMIEŃ IMG: assets/histamina-cover.jpg -->
+              <img src="assets/histamina-cover.jpg" alt="Niewidzialna choroba – HISTAMINA (okładka e-booka)" class="w-full aspect-[4/5] object-cover">
+              <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_30%_20%,rgba(245,197,66,.18),transparent_40%),radial-gradient(circle_at_80%_90%,rgba(245,197,66,.12),transparent_45%)]"></div>
+              <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/60 border border-white/10 text-xs">E-BOOK</span>
+              <span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-gold text-black text-xs font-semibold">20 zł</span>
+            </div>
+
+            <div class="mt-5">
+              <h3 class="font-serif text-2xl text-gold">Niewidzialna choroba — HISTAMINA</h3>
+              <p class="mt-2 text-sm text-white/80 leading-relaxed">
+                Prawdziwa historia życia z nietolerancją histaminy + praktyczne wskazówki na co dzień.
+              </p>
+              <ul class="mt-3 text-xs text-white/70 space-y-1">
+                <li>• PDF, natychmiastowa dostawa</li>
+                <li>• Estetyczny składzik, gotowy do druku</li>
+              </ul>
+
+              <div class="mt-5 flex flex-col sm:flex-row gap-3">
+                <a href="https://buycoffee.to/punktonline" target="_blank" rel="noopener"
+                   class="shine bg-gold text-black px-5 py-3 rounded-lg text-center font-semibold shadow-glow">🇵🇱 Kup w Polsce (Blik / przelew)</a>
+                <a href="https://payhip.com/b/histamina" target="_blank" rel="noopener"
+                   class="px-5 py-3 rounded-lg border border-gold/40 text-center hover:bg-white/10">🌍 Kup automatycznie (karta / PayPal)</a>
+              </div>
+            </div>
           </div>
-        </div>
-        <div>
-          <h3 class="text-3xl font-serif text-gold mb-3">Życie z histaminą</h3>
-          <p class="opacity-80 leading-relaxed">Prawdziwa historia kobiety, która od lat zmaga się z nietolerancją histaminy. E‑book łączy osobiste doświadczenia z praktycznymi poradami i inspirującą drogą do zdrowia. To przewodnik po codzienności, która wymaga zrozumienia własnego ciała i emocji.</p>
-          <ul class="mt-4 text-sm opacity-80 list-disc list-inside space-y-1">
-            <li>Format PDF, natychmiastowy dostęp</li>
-            <li>Styl: czarno‑złoty, elegancki składy</li>
-            <li>Autorzy: Punkt Online</li>
-          </ul>
-          <div class="mt-6 flex flex-col sm:flex-row gap-3">
-            <a href="https://buycoffee.to/punktonline" target="_blank" rel="noopener" class="bg-gold text-black px-5 py-3 rounded-lg text-center font-semibold hover:brightness-95 focus-ring">🇵🇱 Kup w Polsce (Blik / przelew)</a>
-            <a href="https://payhip.com/b/histamina" target="_blank" rel="noopener" class="border border-gold/40 px-5 py-3 rounded-lg text-center hover:bg-white/10 focus-ring">🌍 Kup automatycznie (karta / PayPal)</a>
+        </article>
+
+        <!-- PRODUCT 2: NAWROCKI -->
+        <article class="tilt" data-animate>
+          <div class="group rounded-2xl glass ring-gold shadow-soft overflow-hidden p-4 sm:p-5 transition-transform">
+            <div class="relative rounded-xl overflow-hidden shadow-glow">
+              <!-- PODMIEŃ IMG: assets/nawrocki-cover.jpg -->
+              <img src="assets/nawrocki-cover.jpg" alt="Karol Nawrocki — Milczenie i Krzyk (okładka e-booka)" class="w-full aspect-[4/5] object-cover">
+              <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_20%_15%,rgba(245,197,66,.16),transparent_45%),radial-gradient(circle_at_80%_85%,rgba(245,197,66,.1),transparent_55%)]"></div>
+              <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/60 border border-white/10 text-xs">E-BOOK</span>
+              <span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-gold text-black text-xs font-semibold">10 zł</span>
+            </div>
+
+            <div class="mt-5">
+              <h3 class="font-serif text-2xl text-gold">Karol Nawrocki — <span class="text-white/95 italic">Milczenie i Krzyk</span></h3>
+              <p class="mt-2 text-sm text-white/80 leading-relaxed">
+                Dwugłos o sile i słabości. Opowieść o wyborach, które dzielą — i o prawdzie, która łączy.
+              </p>
+              <ul class="mt-3 text-xs text-white/70 space-y-1">
+                <li>• PDF, natychmiastowa dostawa</li>
+                <li>• Rozdziały krótkie, reportażowe</li>
+              </ul>
+
+              <div class="mt-5 flex flex-col sm:flex-row gap-3">
+                <a href="https://buycoffee.to/punktonline" target="_blank" rel="noopener"
+                   class="shine bg-gold text-black px-5 py-3 rounded-lg text-center font-semibold shadow-glow">🇵🇱 Kup w Polsce (Blik / przelew)</a>
+                <a href="https://payhip.com/" target="_blank" rel="noopener"
+                   class="px-5 py-3 rounded-lg border border-gold/40 text-center hover:bg-white/10">🌍 Kup automatycznie (karta / PayPal)</a>
+              </div>
+            </div>
           </div>
-          <div class="mt-3 text-lg text-gold font-semibold">Cena: 20 zł</div>
-        </div>
+        </article>
       </div>
-
-      <div class="grid md:grid-cols-2 gap-10 items-center" data-animate>
-        <div class="rounded-xl border border-white/10 bg-white/5 aspect-[4/5] flex items-center justify-center text-gray-400 italic">Okładka w przygotowaniu</div>
-        <div>
-          <h3 class="text-3xl font-serif text-gold mb-3">Karol Nawrocki. Dwie twarze, jedna historia</h3>
-          <p class="opacity-80 leading-relaxed">Odważna opowieść o dwóch stronach ludzkiej natury — sile i słabości, prawdzie i milczeniu. Premiera wkrótce na Punkt Online.</p>
-          <div class="mt-3 inline-flex items-center gap-2 text-gold/90 font-semibold">
-            <span class="inline-block h-2 w-2 rounded-full bg-gold"></span>
-            W przygotowaniu
-          </div>
-        </div>
-      </div>
-
-      <!-- Dane strukturalne Product (SEO) -->
-      <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Product",
-        "name": "Życie z histaminą",
-        "image": ["assets/og-image.jpg"],
-        "description": "Prawdziwa historia z praktycznymi poradami dotyczącymi życia z nietolerancją histaminy.",
-        "brand": {"@type":"Brand","name":"Punkt Online"},
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "PLN",
-          "price": "20",
-          "availability": "https://schema.org/InStock",
-          "url": "https://buycoffee.to/punktonline"
-        }
-      }
-      </script>
     </div>
   </section>
 
   <!-- FAQ -->
   <section id="faq" class="py-16 bg-white/5 border-y border-white/10">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
       <h2 class="text-3xl font-serif text-gold text-center mb-8">Najczęstsze pytania</h2>
       <div class="space-y-4">
-        <details class="group bg-white/5 rounded-lg p-4 border border-white/10" data-animate>
-          <summary class="cursor-pointer font-semibold group-open:text-gold">Jak dostanę e‑booka?</summary>
-          <p class="mt-2 opacity-80 text-sm">Po zakupie przez BuyCoffee — wyślij nam adres e‑mail, odeślemy plik ręcznie. Po zakupie przez PayHip — dostawa następuje automatycznie.</p>
+        <details class="group glass rounded-lg p-4 border border-white/10" data-animate>
+          <summary class="cursor-pointer font-semibold group-open:text-gold">Jak dostanę e-booka?</summary>
+          <p class="mt-2 opacity-80 text-sm">Po zakupie przez BuyCoffee — wyślij adres e-mail, odeślemy plik ręcznie. Przez PayHip — dostawa automatyczna.</p>
         </details>
-        <details class="group bg-white/5 rounded-lg p-4 border border-white/10" data-animate>
+        <details class="group glass rounded-lg p-4 border border-white/10" data-animate>
           <summary class="cursor-pointer font-semibold group-open:text-gold">Czy mogę zapłacić Blikiem?</summary>
-          <p class="mt-2 opacity-80 text-sm">Tak. Wybierz 🇵🇱 „Kup w Polsce (Blik / przelew)” — płatność obsługuje BuyCoffee.</p>
+          <p class="mt-2 opacity-80 text-sm">Tak — wybierz 🇵🇱 „Kup w Polsce (Blik / przelew)”.</p>
         </details>
-        <details class="group bg-white/5 rounded-lg p-4 border border-white/10" data-animate>
-          <summary class="cursor-pointer font-semibold group-open:text-gold">Kiedy będzie kolejny e‑book?</summary>
-          <p class="mt-2 opacity-80 text-sm">Nowe tytuły planujemy co miesiąc. Obserwuj nas na TikToku i Instagramie, by nie przegapić premiery.</p>
+        <details class="group glass rounded-lg p-4 border border-white/10" data-animate>
+          <summary class="cursor-pointer font-semibold group-open:text-gold">Czy będzie więcej tytułów?</summary>
+          <p class="mt-2 opacity-80 text-sm">Tak — nowe tytuły co miesiąc. Obserwuj nas na TikToku i Instagramie.</p>
         </details>
       </div>
     </div>
   </section>
 
-  <!-- Kontakt -->
+  <!-- KONTAKT -->
   <section id="kontakt" class="py-16 sm:py-24">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center">
       <h2 class="text-3xl font-serif text-gold mb-6">Kontakt</h2>
-      <p class="opacity-80">📩 E‑mail: <a href="mailto:punktonline@gmail.com" class="text-gold hover:underline">punktonline@gmail.com</a></p>
+      <p class="opacity-80">📩 E-mail: <a href="mailto:punktonline@gmail.com" class="text-gold hover:underline">punktonline@gmail.com</a></p>
       <p class="opacity-80 mt-2">🎵 TikTok: <a href="https://www.tiktok.com/@punktonline" class="text-gold hover:underline" target="_blank" rel="noopener">@punktonline</a></p>
       <p class="opacity-80 mt-2">📸 Instagram: <a href="https://www.instagram.com/punktonline" class="text-gold hover:underline" target="_blank" rel="noopener">@punktonline</a></p>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer class="py-8 border-t border-white/10 text-center text-sm opacity-70">
     <p>© 2025 Punkt Online — prawdziwe historie o zdrowiu i życiu.</p>
   </footer>
 
-  <!-- Powrót do góry -->
-  <button id="toTop" class="fixed bottom-5 right-5 hidden md:inline-flex items-center justify-center h-10 w-10 rounded-full border border-white/15 bg-dark/70 hover:border-gold/50 focus-ring" aria-label="Powrót do góry">↑</button>
-
+  <!-- Scripts: tilt + reveal -->
   <script>
-    // Animacje wejścia
-    const els = document.querySelectorAll('[data-animate]');
+    // Simple tilt
+    document.querySelectorAll('.tilt').forEach(card=>{
+      let rAF;
+      const bound = card.getBoundingClientRect();
+      const max = 10; // deg
+      function move(e){
+        const x = (e.clientX - bound.left) / bound.width - .5;
+        const y = (e.clientY - bound.top) / bound.height - .5;
+        card.style.transform = `perspective(1000px) rotateY(${x*max}deg) rotateX(${ -y*max}deg)`;
+      }
+      card.addEventListener('mousemove', e => { cancelAnimationFrame(rAF); rAF=requestAnimationFrame(()=>move(e)); });
+      card.addEventListener('mouseleave', ()=> card.style.transform = 'perspective(1000px) rotateY(0) rotateX(0)');
+    });
+
+    // Reveal on scroll
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
-    },{threshold:0.2});
-    els.forEach(el=>io.observe(el));
-
-    // Przycisk powrotu
-    const btn = document.getElementById('toTop');
-    window.addEventListener('scroll', ()=>{
-      btn.style.display = window.scrollY > 800 ? 'inline-flex' : 'none';
-    });
-    btn.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+    },{threshold:.2});
+    document.querySelectorAll('[data-animate]').forEach(el=>io.observe(el));
   </script>
 </body>
 </html>
